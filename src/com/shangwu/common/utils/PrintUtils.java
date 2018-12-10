@@ -1,7 +1,17 @@
 package com.shangwu.common.utils;
 
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGEncodeParam;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.print.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 /**
  * @author ruanhui
@@ -26,13 +36,34 @@ public class PrintUtils implements Printable {
         g2d.drawString("手机号码：" + "15272072107", 5, 75);
         g2d.drawString("缴费金额：" + "1000 RMB", 5, 105);
         g2d.drawString("打印时间:" + "2018-12-09 23:16:39", 5, 140);
-
+        g2d.drawImage(writeQrCodeContent(),50, 160,100,100, null);
         return PAGE_EXISTS;
     }
 
 
+    /**
+     *@author ruanhui
+     *@date 2018/12/10
+     *@description 生成二维码
+     */
+    public Image writeQrCodeContent()  {
+        java.awt.Image im = null ;
+        try {
+            File file=new File("C:\\Users\\aRunn\\Desktop\\mmqrcode1544452555502.png");
+            InputStream is = new FileInputStream(file);
+            BufferedImage bi;
+            bi = ImageIO.read(is);
+             im = (java.awt.Image)bi;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return im;
+    }
+
+
     public static void main(String[] args) {
-        int height = 175 + 3 * 15 + 20;
+
+        int height = 250 + 3 * 15 + 20;
 
         // 通俗理解就是书、文档
         Book book = new Book();
@@ -59,5 +90,6 @@ public class PrintUtils implements Printable {
             System.out.println("================打印出现异常");
         }
     }
+
 }
 
