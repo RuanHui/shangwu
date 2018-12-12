@@ -10,9 +10,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * 
- * @author xiangyong
- * @date 创建时间：2018-5-21 上午10:49:54
+ *@author ruanhui
+ *@date 2018/12/12
+ *@description 
  */
 public class CharFilter implements Filter {
 	public void destroy() {

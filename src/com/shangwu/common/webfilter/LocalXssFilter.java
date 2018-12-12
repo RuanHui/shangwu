@@ -7,9 +7,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * 
- * @author xiangyong
- * @date 创建时间：2018-5-21 上午10:55:51
+ *@author ruanhui
+ *@date 2018/12/12
+ *@description
  */
 public class LocalXssFilter implements Filter {
 

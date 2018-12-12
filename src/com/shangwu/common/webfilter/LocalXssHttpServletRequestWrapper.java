@@ -6,9 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 /**
- * 
- * @author xiangyong
- * @date 创建时间：2018-5-21 上午11:00:15
+ *@author ruanhui
+ *@date 2018/12/12
+ *@description
  */
 public class LocalXssHttpServletRequestWrapper extends HttpServletRequestWrapper
 {

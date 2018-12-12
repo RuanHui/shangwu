@@ -47,6 +47,66 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+
+    <!-- ==============================Xss攻击过滤 本地实现====================================== -->
+    <filter>
+        <filter-name>xssFilter</filter-name>
+        <filter-class>com.shangwu.common.webfilter.LocalXssFilter</filter-class>
+
+        <init-param>
+            <param-name>SplitChar</param-name>
+            <param-value>@</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>FilterChar</param-name>
+            <param-value>script@svg@alert@confirm@prompt@onload@onmouseover@onfocus@onerror@xss@document@write@javascript@windows@sql_debug@xp_cmdshell@img</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>ReplaceChar</param-name>
+            <param-value>ｓｃｒｉｐｔ@ｓｖｇ@ａｌｅｒｔ@ｃｏｍｆｉｒｍ@ｐｒｏｍｐｔ@ｏｎｌｏａｄ@ｏｎｍｏｕｓｅｏｖｅｒ@ｏｎｆｏｃｕｓ@ｏｎｅｒｒｏｒ@ｘｓｓ@ｄｏｃｕｍｅｎｔ@ｗｒｉｔｅ@ｊａｖａｓｃｒｉｐｔ@ｗｉｎｄｏｗｓ@ｓｑｌ＿ｄｅｂｕｇ@ｘｐ＿ｃｍｄｓｈｅｌｌ@ｉｍｇ</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>xssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--hostHeaderFilter 防御主机头攻击-->
+    <filter>
+        <filter-name>hostHeaderFilter</filter-name>
+        <filter-class>com.shangwu.common.webfilter.HostHeaderFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hostHeaderFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- CSRF跨站请求伪造 过滤-->
+    <filter>
+        <filter-name>csrfFilter</filter-name>
+        <filter-class>com.shangwu.common.webfilter.CsrfFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>csrfFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--charFilter 链接注入攻击过滤-->
+    <filter>
+        <filter-name>charFilter</filter-name>
+        <filter-class>com.shangwu.common.webfilter.CharFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>charFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
     <!-- jsp的配置 -->
     <jsp-config>
         <jsp-property-group>
@@ -65,9 +125,17 @@
         <error-code>404</error-code>
         <location>/404.html</location>
     </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.NullPointerException</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>shangwu/index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

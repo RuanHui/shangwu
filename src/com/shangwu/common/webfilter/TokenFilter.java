@@ -8,10 +8,9 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * CSRF跨站请求伪造 过滤
- * 
- * @author yuzm
- * 
+ *@author ruanhui
+ *@date 2018/12/12
+ *@description 
  */
 public class TokenFilter implements Filter {
 

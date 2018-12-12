@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 
- * @author xiangyong
- * @date 创建时间：2018-5-21 上午10:47:42
+ *@author ruanhui
+ *@date 2018/12/12
+ *@description
  */
 public class CsrfFilter implements Filter {
 	public void destroy() {
@@ -19,7 +19,7 @@ public class CsrfFilter implements Filter {
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)throws IOException, ServletException {
 		//获取需要过滤的地址系统参数	通过再这里配置过滤的地址  --ruanhui  20180828
-		String[] filters = {"http://106.13.9.33:8080","http://www.arunner.cn:80"};
+		String[] filters = {"http://106.13.9.33:8080","http://localhost:8080","http://www.arunner.cn:80"};
 
 		List<String> filtersList = Arrays.asList(filters);
 		List<String> listWithHttp = new ArrayList();	//带http的list   --》 http://135.10.58.62
