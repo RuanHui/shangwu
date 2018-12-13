@@ -61,12 +61,12 @@ public class GeetestLib {
 	/**
 	 * 公钥
 	 */
-	private String captchaId = "f19afb3e2a48fa9140e989d9180bdd59";
+	private String captchaId = "";
 
 	/**
 	 * 私钥
 	 */
-	private String privateKey = "65522e02d448927f47cdf1008504832e";
+	private String privateKey = "";
 	
 	/**
 	 * 是否开启新的failback

@@ -9,6 +9,7 @@
 <html>
   <head>
     <title>$Title$</title>
+    <link rel="shortcut icon" href="/resource/images/icon.png" type="image/x-icon"/>
   </head>
   <body>
   $END$

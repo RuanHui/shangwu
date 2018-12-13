@@ -57,7 +57,7 @@ public class TokenFilter implements Filter {
 //				s.removeAttribute("csrftoken");
 				chain.doFilter(arg0, arg1);
 			} else {
-				if(request.getServletPath().equals("/login1.jsp")){
+				if(request.getServletPath().equals("/login.jsp")){
 					chain.doFilter(request, response);
 				}else{
 					System.out.println("4 error");

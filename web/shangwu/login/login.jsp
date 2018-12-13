@@ -16,36 +16,44 @@
     <!-- 引入 login.js，既可以使用其中提供的 initGeetest 初始化函数 -->
     <script src="js/login.js?v=<%=new Date()%>"></script>
     <link rel="stylesheet" href="css/login.css?v=<%=new Date()%>">
+    <link rel="shortcut icon" href="/resource/images/icon.png" type="image/x-icon"/>
 </head>
 <body>
 <div class="col-md-6 col-md-4" id="loginDiv">
-    <form class="form-horizontal">
+    <%-- action="<%=basePath%>login/login.json"--%>
+    <form class="form-horizontal" action="<%=basePath%>login/login.json" method="post" onsubmit="return handler2()">
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-5 control-label">用户名：</label>
+            <label for="username" class="col-sm-5 control-label">用户名：</label>
             <div class="col-sm-7">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="请输入用户名">
+                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-5 control-label">密码：</label>
+            <label for="password" class="col-sm-5 control-label">密码：</label>
             <div class="col-sm-7">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-5 control-label">完成验证：</label>
+            <label class="col-sm-5 control-label">完成验证：</label>
             <div id="captcha" class="col-sm-7">
                 <p id="wait" style="display: block">正在加载验证码......</p>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-5 control-label"></label>
+            <label class="col-sm-5 control-label"></label>
             <div id="noticeDiv" class="col-sm-7">
                 <p id="notice" style="display: none;color: red;">请先完成验证</p>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-5 control-label"></label>
+            <label class="col-sm-5 control-label"></label>
+            <div id="messageDiv" class="col-sm-7">
+                <font color="red"><%= null == session.getAttribute("message") ? "" : session.getAttribute("message")%></font>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-5 control-label"></label>
             <button type="submit" id="submit" class="btn btn-default">提交</button>
         </div>
     </form>
@@ -62,25 +70,28 @@
                     $("#notice").hide();
                 }, 2000);
             } else {
-                $.ajax({
+                return true;
+                /*$.ajax({
                     url: '<%=basePath%>gt/ajax-validate2',
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        username: $('#username2').val(),
-                        password: $('#password2').val(),
+                        // username: $('#username').val(),
+                        // password: $('#password').val(),
                         geetest_challenge: result.geetest_challenge,
                         geetest_validate: result.geetest_validate,
                         geetest_seccode: result.geetest_seccode
                     },
                     success: function (data) {
                         if (data.status === 'success') {
-                            // alert('登录成功');
+                            console.log("验证成功");
+                            return true;
                         } else if (data.status === 'fail') {
-                            // alert('登录失败');
+                           console.log("验证失败");
+                           return false;
                         }
                     }
-                })
+                })*/
             }
             e.preventDefault();
         });

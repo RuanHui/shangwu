@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangwu.students.mapper.EnrollMapper">
+
+	<!--插入学生-->
+	<insert id="insertStudent" parameterType="com.shangwu.students.domain.StudentInfo">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into shangwu_students_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				name,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="age != null">
+				age,
+			</if>
+			<if test="parentPhone != null">
+				parentPhone,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			insertTime
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="sex != null">
+				#{sex},
+			</if>
+			<if test="age != null">
+				#{age},
+			</if>
+			<if test="parentPhone != null">
+				#{parentPhone},
+			</if>
+			<if test="address != null">
+				#{address},
+			</if>
+			now()
+		</trim>
+	</insert>
+</mapper>

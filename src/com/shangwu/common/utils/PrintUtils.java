@@ -49,7 +49,8 @@ public class PrintUtils implements Printable {
     public Image writeQrCodeContent()  {
         java.awt.Image im = null ;
         try {
-            File file=new File("C:\\Users\\aRunn\\Desktop\\mmqrcode1544452555502.png");
+//            File file=new File("/shangwu/resource/images/icon.png");
+            File file=new File("C:\\Users\\aRunn\\Desktop\\shangwuCode.jpg");
             InputStream is = new FileInputStream(file);
             BufferedImage bi;
             bi = ImageIO.read(is);

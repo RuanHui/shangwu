@@ -54,7 +54,7 @@ public class CsrfFilter implements Filter {
 		}
 //    	if (referer != null && !referer.startsWith("http://localhost") ) {
 		System.out.println("======referer，已拦截======");
-		response.sendRedirect(request.getContextPath() + "/login1.jsp");
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
 		// 然后return，不要输出后面的内容了
 		return;
 //        }

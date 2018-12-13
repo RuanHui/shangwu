@@ -50,7 +50,7 @@ public class HostHeaderFilter implements Filter {
 
 		//if (  !StringUtils.equals(myhosts, "135.10.59.64") && !StringUtils.equals(myhosts, "135.10.58.62") && !StringUtils.equals(myhosts, "www.gz.10086.cn") ) {
 			System.out.println("======访问host非法，已拦截======");
-			response.sendRedirect(request.getContextPath() + "/login1.jsp");
+			response.sendRedirect(request.getContextPath() + "/login.jsp");
 			return;
 		}
 		// 获取请求是从哪里来的  解决 CSRF跨站请求伪造
@@ -75,7 +75,7 @@ public class HostHeaderFilter implements Filter {
 //        	if (referer != null && (!referer.startsWith("http://135.10.58.62"))) {
  //       if (referer != null && (!referer.startsWith("http://135.10.59.64")  &&  !referer.startsWith("http://www.gz.10086.cn") &&  !referer.startsWith("http://135.10.58.62"))) {
 		System.out.println("======referer，已拦截======");
-		response.sendRedirect(request.getContextPath() + "/login1.jsp");
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
 		// 然后return，不要输出后面的内容了
 		return;
 //        }
