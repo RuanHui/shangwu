@@ -27,6 +27,7 @@
             <label for="name" class="col-sm-3 control-label">姓名：</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" id="name" name="name" placeholder="姓名">
+                <div id="nameErrorDiv" style="display: none" class="alert alert-danger">姓名不能为空！</div>
             </div>
         </div>
         <div class="form-group">

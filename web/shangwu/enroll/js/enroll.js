@@ -15,11 +15,11 @@ $(function () {
 })
 //提交方法
 function doSubmit() {
-    //防止重复提交
-    $("#submit").prop("disabled","disabled");
     //提交之前校验
     var flag = verify();
     if(flag == true) {
+        //防止重复提交
+        $("#submit").prop("disabled","disabled");
         //发送ajax请求
         $.ajax({
             url : '/enroll/enroll.json',
@@ -40,16 +40,22 @@ function doSubmit() {
             success : function(d) {
                 if (d.success) {
                     //恢复按钮
-                    $("#submit").removeAttr("disabled")
+                    $("#submit").removeAttr("disabled");
                     $('#submit').popover("show");
                     //1秒后隐藏弹出层
                     setTimeout(function () { $('#submit').popover("hide");},1000);
                     //清空输入框
                     resetForm();
+                }else {
+                    //恢复按钮
+                    $("#submit").removeAttr("disabled");
+                    $('#submitErrorDiv').popover("show");
+                    //1秒后隐藏弹出层
+                    setTimeout(function () { $('#submitErrorDiv').popover("hide");},1000);
                 }
             },
             error:function (e) {
-                $('#submitErrorDiv').popover("show");
+                $('#submitErrorDiv').show();
                 //1秒后隐藏弹出层
                 setTimeout(function () { $('#submitErrorDiv').popover("hide");},1000);
             }
@@ -59,6 +65,15 @@ function doSubmit() {
 
 //校验方法
 function verify() {
+    //校验姓名
+    var name = $("#name").val();
+    if (name == "" ) {
+        //在手机号后面提示手机号错误
+        $('#nameErrorDiv').show();
+        //1秒后隐藏错误框
+        setTimeout(function () { $('#nameErrorDiv').hide(); },1000);
+        return false;
+    }
     //校验手机号
     var phone = $("#parentPhone").val();
     var flag = isPoneAvailable(phone);
@@ -66,7 +81,7 @@ function verify() {
         //在手机号后面提示手机号错误
         $('#phoneErrorDiv').show();
         //1秒后隐藏错误框
-        setTimeout(function () { $('#phoneErrorDiv').hide(); },1500);
+        setTimeout(function () { $('#phoneErrorDiv').hide(); },1000);
         return false;
     }
     //校验年龄
@@ -75,14 +90,14 @@ function verify() {
         if (age > 60 || age < 1) {
             $('#ageErrorDiv').show();
             //1秒后隐藏错误框
-            setTimeout(function () { $('#ageErrorDiv').hide(); },1500);
+            setTimeout(function () { $('#ageErrorDiv').hide(); },1000);
             return false;
         }
     }catch (e) {
         console.log("年龄格式错误：" + e);
         $('#ageErrorDiv').show();
         //1秒后隐藏错误框
-        setTimeout(function () { $('#ageErrorDiv').hide(); },1500);
+        setTimeout(function () { $('#ageErrorDiv').hide(); },1000);
         return false;
     }
     //校验省市区地址
@@ -93,7 +108,7 @@ function verify() {
     if (province == "" || city == "" || district == "" || address == "")  {
         $('#addressErrorDiv').show();
         //1秒后隐藏错误框
-        setTimeout(function () { $('#addressErrorDiv').hide(); },1500);
+        setTimeout(function () { $('#addressErrorDiv').hide(); },1000);
         return false;
     }
     //校验数字（缴费金额）
@@ -102,7 +117,7 @@ function verify() {
     if (isPayment == false) {
         $('#paymentAmountErrorDiv').show();
         //1秒后隐藏错误框
-        setTimeout(function () { $('#paymentAmountErrorDiv').hide(); },1500);
+        setTimeout(function () { $('#paymentAmountErrorDiv').hide(); },1000);
         return false;
     }
     return true;
