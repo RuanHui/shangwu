@@ -49,15 +49,15 @@ function doSubmit() {
                 }else {
                     //恢复按钮
                     $("#submit").removeAttr("disabled");
-                    $('#submitErrorDiv').popover("show");
+                    $('#submitErrorDiv').show();
                     //1秒后隐藏弹出层
-                    setTimeout(function () { $('#submitErrorDiv').popover("hide");},1000);
+                    setTimeout(function () { $('#submitErrorDiv').hide();},1000);
                 }
             },
             error:function (e) {
                 $('#submitErrorDiv').show();
                 //1秒后隐藏弹出层
-                setTimeout(function () { $('#submitErrorDiv').popover("hide");},1000);
+                setTimeout(function () { $('#submitErrorDiv').hide();},1000);
             }
         });
     }
