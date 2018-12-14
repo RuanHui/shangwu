@@ -18,8 +18,26 @@ public class StudentInfo {
     private String parentPhone;     //父母电话
     private String address;     //家庭住址
     private String courseId;     //课程ID
+    private String courseName;     //课程名称
     private String paymentMode;     //支付方式
+    private String paymentModeName;     //支付方式名称
     private String paymentAmount;     //支付金额
+
+    public String getPaymentModeName() {
+        return paymentModeName;
+    }
+
+    public void setPaymentModeName(String paymentModeName) {
+        this.paymentModeName = paymentModeName;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
     public Integer getId() {
         return id;
@@ -103,7 +121,9 @@ public class StudentInfo {
                 ", parentPhone='" + parentPhone + '\'' +
                 ", address='" + address + '\'' +
                 ", courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
                 ", paymentMode='" + paymentMode + '\'' +
+                ", paymentModeName='" + paymentModeName + '\'' +
                 ", paymentAmount='" + paymentAmount + '\'' +
                 '}';
     }

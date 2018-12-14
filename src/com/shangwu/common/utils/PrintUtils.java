@@ -1,17 +1,18 @@
 package com.shangwu.common.utils;
 
+import com.shangwu.students.domain.StudentInfo;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.print.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author ruanhui
@@ -20,23 +21,35 @@ import java.io.InputStream;
  */
 public class PrintUtils implements Printable {
 
+    private StudentInfo studentInfo;
+    private HttpServletRequest request;
+
+    public PrintUtils(HttpServletRequest request,StudentInfo studentInfo) {
+        this.studentInfo = studentInfo;
+        this.request = request;
+    }
+
+    public PrintUtils() {
+    }
 
     @Override
     public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (page > 0) {
             return NO_SUCH_PAGE;
         }
         Graphics2D g2d = (Graphics2D) g;
         g2d.setFont(new Font("Default", Font.PLAIN, 20));
         g2d.drawString("尚武道场", 60, 20);
-        g2d.drawString("---------------------------------------", 7, 30);
-        g2d.setFont(new Font("Default", Font.PLAIN, 10));
-        g2d.drawString("学生姓名：" + "诺贝尔爱情奖", 5, 45);
-        g2d.drawString("手机号码：" + "15272072107", 5, 75);
-        g2d.drawString("缴费金额：" + "1000 RMB", 5, 105);
-        g2d.drawString("打印时间:" + "2018-12-09 23:16:39", 5, 140);
-        g2d.drawImage(writeQrCodeContent(),50, 160,100,100, null);
+        g2d.drawString("-------------------------------------", 7, 30);
+        g2d.setFont(new Font("Default", Font.PLAIN, 12));
+        g2d.drawString("学生姓名：" + studentInfo.getName(), 5, 45);
+        g2d.drawString("手机号码：" + studentInfo.getParentPhone(), 5, 75);
+        g2d.drawString("课程名称：" + studentInfo.getCourseName(), 5, 105);
+        g2d.drawString("缴费金额：" + studentInfo.getPaymentAmount() + " RMB", 5, 135);
+        g2d.drawString("支付方式：" + studentInfo.getPaymentModeName(), 5, 165);
+        g2d.drawString("打印时间：" + sdf.format(new Date()), 5, 195);
+        g2d.drawImage(writeQrCodeContent(),50, 225,100,100, null);
         return PAGE_EXISTS;
     }
 
@@ -49,8 +62,11 @@ public class PrintUtils implements Printable {
     public Image writeQrCodeContent()  {
         java.awt.Image im = null ;
         try {
-//            File file=new File("/shangwu/resource/images/icon.png");
-            File file=new File("C:\\Users\\aRunn\\Desktop\\shangwuCode.jpg");
+            //获取图片路径
+            String filePath = request.getSession().getServletContext().getRealPath("/") + "resource/images/";
+            System.out.println("filePath:" + filePath) ;
+            File file=new File(filePath + "shangwuCode.jpg");
+            System.out.println(file.getName());
             InputStream is = new FileInputStream(file);
             BufferedImage bi;
             bi = ImageIO.read(is);
@@ -61,8 +77,8 @@ public class PrintUtils implements Printable {
         return im;
     }
 
-
-    public static void main(String[] args) {
+    //打印方法
+    public static void print(HttpServletRequest request,StudentInfo studentInfo) {
 
         int height = 250 + 3 * 15 + 20;
 
@@ -80,7 +96,7 @@ public class PrintUtils implements Printable {
         pf.setPaper(p);
 
         // 把 PageFormat 和 Printable 添加到书中，组成一个页面
-        book.append(new PrintUtils(), pf);
+        book.append(new PrintUtils(request,studentInfo), pf);
 
         // 获取打印服务对象
         PrinterJob job = PrinterJob.getPrinterJob();
@@ -91,6 +107,5 @@ public class PrintUtils implements Printable {
             System.out.println("================打印出现异常");
         }
     }
-
 }
 

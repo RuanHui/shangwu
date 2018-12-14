@@ -35,7 +35,7 @@ public class EnrollController {
     @RequestMapping(value = "/enroll.json",method = RequestMethod.POST)
     @ResponseBody
     public Map enroll(HttpServletRequest request,StudentInfo studentInfo) {
-        return service.insertStudent(studentInfo);
+        return service.insertStudent(request,studentInfo);
     }
 
     /**

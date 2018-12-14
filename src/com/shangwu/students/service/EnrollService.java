@@ -1,11 +1,13 @@
 package com.shangwu.students.service;
 
+import com.shangwu.common.utils.PrintUtils;
 import com.shangwu.students.domain.CourseInfo;
 import com.shangwu.students.domain.StudentInfo;
 import com.shangwu.students.mapper.EnrollMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,7 @@ public class EnrollService {
     private EnrollMapper mapper;
 
     //插入学生数据
-    public Map insertStudent(StudentInfo studentInfo) {
+    public Map insertStudent(HttpServletRequest request, StudentInfo studentInfo) {
         Map<String,Object> resultMap = new HashMap<>();
         try {
             //插入学生表
@@ -31,8 +33,8 @@ public class EnrollService {
             Integer id = studentInfo.getId();
             //插入缴费表
             mapper.insertPayment(studentInfo);
-            //TODO 打印小票
-
+            //打印小票
+            PrintUtils.print(request,studentInfo);
             resultMap.put("success",true);
         }catch (Exception e) {
             e.printStackTrace();

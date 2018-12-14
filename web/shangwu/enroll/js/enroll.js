@@ -15,6 +15,8 @@ $(function () {
 })
 //提交方法
 function doSubmit() {
+    //防止重复提交
+    $("#submit").prop("disabled","disabled");
     //提交之前校验
     var flag = verify();
     if(flag == true) {
@@ -29,12 +31,16 @@ function doSubmit() {
                 parentPhone : $("#parentPhone").val(),
                 address : $("#distpicker option:checked").text() + $("#address").val(),
                 courseId:$("#courceSelect").val(),
+                courseName:$("#courceSelect").find("option:selected").text(),
                 paymentMode:$("#paymentMode").val(),
+                paymentModeName:$("#paymentMode").find("option:selected").text(),
                 paymentAmount:$("#paymentAmount").val()
             },
             dataType : 'json',
             success : function(d) {
                 if (d.success) {
+                    //恢复按钮
+                    $("#submit").removeAttr("disabled")
                     $('#submit').popover("show");
                     //1秒后隐藏弹出层
                     setTimeout(function () { $('#submit').popover("hide");},1000);
