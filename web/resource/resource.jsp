@@ -16,4 +16,9 @@
 <script src="<%=basePath%>resource/jquery/jquery-3.3.1.min.js"></script>
 <%--引入bootstrap--%>
 <script src="<%=basePath%>/resource/bootstrap/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="<%=basePath%>resource/bootstrap/css/bootstrap.min.css"/>
+
+<%--引入distpicker省市区三级联动插件--%>
+<script src="<%=basePath%>/resource/distpicker/distpicker.data.js"></script>
+<script src="<%=basePath%>/resource/distpicker/distpicker.js"></script>

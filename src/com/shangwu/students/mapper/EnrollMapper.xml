@@ -47,4 +47,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			now()
 		</trim>
 	</insert>
+
+	<!--插入缴费表-->
+	<insert id="insertPayment" parameterType="com.shangwu.students.domain.StudentInfo">
+		insert into shangwu_payment_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				studentId,
+			</if>
+				paymentDate,
+			<if test="paymentMode != null">
+				paymentMode,
+			</if>
+			<if test="paymentAmount != null">
+				paymentAmount,
+			</if>
+			<if test="courseId != null">
+				courseId
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			now(),
+			<if test="paymentMode != null">
+				#{paymentMode},
+			</if>
+			<if test="paymentAmount != null">
+				#{paymentAmount},
+			</if>
+			<if test="courseId != null">
+				#{courseId}
+			</if>
+		</trim>
+	</insert>
+
+	<!--获取课程列表-->
+	<select id="getCourseSelect" resultType="com.shangwu.students.domain.CourseInfo">
+		SELECT id,courseName,coursePrice FROM `shangwu_course_info` where `status`='1'
+	</select>
 </mapper>

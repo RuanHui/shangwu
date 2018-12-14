@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="css/enroll.css?v=<%=new Date()%>">
 </head>
 <body>
-<div class="col-md-6 col-md-4" id="loginDiv">
-    <form class="form-horizontal">
+<div class="col-md-5" id="loginDiv">
+    <form id="enrollForm" class="form-horizontal" onsubmit="return false;">
         <div class="form-group">
             <label for="name" class="col-sm-5 control-label">姓名：</label>
             <div class="col-sm-7">
@@ -44,23 +44,64 @@
             <label for="age" class="col-sm-5 control-label">年龄：</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" id="age" name="age" placeholder="年龄">
+                <div id="ageErrorDiv" style="display: none" class="alert alert-danger">年龄不合法！</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age" class="col-sm-5 control-label">课程：</label>
+            <div class="col-sm-7">
+                <select id="courceSelect" onchange="selectOnchang()" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age" class="col-sm-5 control-label">缴费金额：</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="paymentAmount" name="paymentAmount" placeholder="缴费金额">
+                <div id="paymentAmountErrorDiv" style="display: none" class="alert alert-danger">金额输入不合法！</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="paymentMode" class="col-sm-5 control-label">支付方式：</label>
+            <div class="col-sm-7">
+                <select id="paymentMode" class="form-control">
+                    <option value="1">支付宝支付</option>
+                    <option value="2">微信支付</option>
+                    <option value="3">现金支付</option>
+                    <option value="4">刷卡支付</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label for="parentPhone" class="col-sm-5 control-label">父母电话：</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control" id="parentPhone" name="parentPhone" placeholder="父母电话">
+                <div id="phoneErrorDiv" style="display: none" class="alert alert-danger">手机号码不合法！</div>
             </div>
         </div>
         <div class="form-group">
             <label for="address" class="col-sm-5 control-label">家庭住址：</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control" id="address" name="address" placeholder="家庭住址">
+                <div id="distpicker">
+                    <div class="col-md-4">
+                        <select class="form-control" id="province"></select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="city"></select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="district"></select>
+                    </div>
+                </div>
+                &nbsp;
+                <input type="text" class="form-control" id="address" name="address" placeholder="详细地址">
+                <div id="addressErrorDiv" style="display: none" class="alert alert-danger">地址信息不完整！</div>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-5 control-label"></label>
-            <button type="submit" id="submit" class="btn btn-default" onclick="doSubmit()">提交</button>
+            <button id="submit" data-toggle="popover" data-content="添加成功！" class="btn btn-default" onclick="doSubmit()">提交</button>
+            <div id="submitErrorDiv" style="display: none" class="alert alert-danger">遇到错误，请稍后重试！</div>
         </div>
     </form>
 </div>

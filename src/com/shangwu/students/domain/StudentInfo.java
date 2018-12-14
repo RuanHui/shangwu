@@ -17,6 +17,9 @@ public class StudentInfo {
     private String age;    //年龄
     private String parentPhone;     //父母电话
     private String address;     //家庭住址
+    private String courseId;     //课程ID
+    private String paymentMode;     //支付方式
+    private String paymentAmount;     //支付金额
 
     public Integer getId() {
         return id;
@@ -66,15 +69,42 @@ public class StudentInfo {
         this.address = address;
     }
 
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(String paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public String getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    public void setPaymentAmount(String paymentAmount) {
+        this.paymentAmount = paymentAmount;
+    }
+
     @Override
     public String toString() {
         return "StudentInfo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", sex=" + sex +
-                ", age=" + age +
+                ", age='" + age + '\'' +
                 ", parentPhone='" + parentPhone + '\'' +
                 ", address='" + address + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", paymentMode='" + paymentMode + '\'' +
+                ", paymentAmount='" + paymentAmount + '\'' +
                 '}';
     }
 }
