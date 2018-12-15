@@ -48,4 +48,15 @@ public class EnrollController {
     public Map getCourseSelect(HttpServletRequest request, HttpServletResponse response) {
         return service.getCourseSelect();
     }
+
+    /**
+     *@author ruanhui
+     *@date 2018/12/14
+     *@description 测试打印
+     */
+    @RequestMapping(value = "/testPring.json",method = RequestMethod.POST)
+    @ResponseBody
+    public void testPring(HttpServletRequest request, HttpServletResponse response) {
+        service.testPring(request);
+    }
 }

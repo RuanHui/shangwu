@@ -22,3 +22,9 @@
 <%--引入distpicker省市区三级联动插件--%>
 <script src="<%=basePath%>/resource/distpicker/distpicker.data.js"></script>
 <script src="<%=basePath%>/resource/distpicker/distpicker.js"></script>
+
+<%--引入bootstrap table 插件--%>
+<script src="<%=basePath%>/resource/bootstrap/js/bootstrap-table.js"></script>
+<script src="<%=basePath%>/resource/bootstrap/js/bootstrap-table-zh-CN.js"></script>
+
+<link rel="stylesheet" type="text/css" href="<%=basePath%>resource/bootstrap/css/bootstrap-table.css"/>

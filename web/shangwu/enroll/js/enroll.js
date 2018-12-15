@@ -29,7 +29,11 @@ function doSubmit() {
                 age : $("#age").val(),
                 sex : $("input[name='sex']:checked").val(),
                 parentPhone : $("#parentPhone").val(),
-                address : $("#distpicker option:checked").text() + $("#address").val(),
+                province:$("#province").val(),
+                city:$("#city").val(),
+                district:$("#district").val(),
+                //获取省市区 下拉框的值$("#distpicker option:checked").text()
+                address : $("#address").val(),
                 courseId:$("#courceSelect").val(),
                 courseName:$("#courceSelect").find("option:selected").text(),
                 paymentMode:$("#paymentMode").val(),
@@ -190,4 +194,21 @@ function selectOnchang() {
     var value = myselect.options[index].value;
     //选中事件后，给下面的缴费金额赋值
     $("#paymentAmount").val(m.get(parseInt(value)));
+}
+
+//查看列表页面
+function doStudentsList() {
+    window.location.href="/shangwu/students/students.jsp";
+}
+
+//测试打印
+function doTestPrint() {
+    $.ajax({
+        url : '/enroll/testPring.json',
+        type : 'post',
+        dataType : 'json',
+        success : function(d) {
+
+        }
+    });
 }

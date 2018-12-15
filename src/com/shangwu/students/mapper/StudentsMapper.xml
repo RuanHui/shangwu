@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shangwu.students.mapper.StudentsMapper">
+
+	<resultMap id="studentMap" type="com.shangwu.students.domain.StudentInfo" >
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="sex" column="sex"/>
+		<result property="age" column="age"/>
+		<result property="parentPhone" column="parentPhone"/>
+		<result property="address" column="address"/>
+		<result property="courseId" column="courseId"/>
+		<result property="courseName" column="courseName"/>
+		<result property="paymentMode" column="paymentMode"/>
+		<result property="paymentModeName" column="paymentModeName"/>
+		<result property="paymentAmount" column="paymentAmount"/>
+	</resultMap>
+
+	<!--查询学生列表-->
+	<select id="getStudentsList" parameterType="com.shangwu.students.domain.StudentInfo" resultType="com.shangwu.students.domain.StudentInfo">
+			SELECT
+				a.*,
+				b.courseName,
+				c.paymentAmount,
+				c.paymentMode
+			FROM
+				shangwu_students_info a
+			LEFT JOIN shangwu_course_info b ON a.courseId = b.id
+			LEFT JOIN shangwu_payment_info c ON a.id = c.studentId
+			<if test="name != null and name != ''">
+				where a.name like concat('%',#{name},'%')
+			</if>
+			limit ${offset},${limit}
+	</select>
+
+	<!--查询总数-->
+	<select id="getStudentsListTotal" parameterType="com.shangwu.students.domain.StudentInfo" resultType="integer">
+		SELECT
+			count(*)
+		FROM
+			shangwu_students_info a
+		LEFT JOIN shangwu_course_info b ON a.courseId = b.id
+		<if test="name != null and name != ''">
+			where name like concat('%',#{name},'%')
+		</if>
+	</select>
+
+	<!--修改缴费信息-->
+	<update id="updatePayment" parameterType="com.shangwu.students.domain.StudentInfo">
+		update shangwu_payment_info
+		<set>
+			<!--<if test="paymentMode != null">
+				paymentMode=#{paymentMode},
+			</if>-->
+			<if test="paymentAmount != null">
+				paymentAmount=#{paymentAmount},
+			</if>
+			<if test="courseId != null">
+				courseId=#{courseId},
+			</if>
+		</set>
+		where studentId = #{id}
+	</update>
+
+	<!--修改学生信息-->
+	<update id="updateStudent" parameterType="com.shangwu.students.domain.StudentInfo">
+		update shangwu_students_info
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+			<if test="sex != null">
+				sex=#{sex},
+			</if>
+			<if test="age != null">
+				age=#{age},
+			</if>
+			<if test="courseId != null">
+				courseId=#{courseId},
+			</if>
+			<if test="parentPhone != null">
+				parentPhone=#{parentPhone},
+			</if>
+			<if test="province != null">
+				province=#{province},
+			</if>
+			<if test="city != null">
+				city=#{city},
+			</if>
+			<if test="district != null">
+				district=#{district},
+			</if>
+			<if test="address != null">
+				address=#{address},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper>

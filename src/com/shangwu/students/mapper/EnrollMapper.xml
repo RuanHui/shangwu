@@ -20,8 +20,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="age != null">
 				age,
 			</if>
+			<if test="courseId != null">
+				courseId,
+			</if>
 			<if test="parentPhone != null">
 				parentPhone,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="district != null">
+				district,
 			</if>
 			<if test="address != null">
 				address,
@@ -38,8 +50,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="age != null">
 				#{age},
 			</if>
+			<if test="courseId != null">
+				#{courseId},
+			</if>
 			<if test="parentPhone != null">
 				#{parentPhone},
+			</if>
+			<if test="province != null">
+				#{province},
+			</if>
+			<if test="city != null">
+				#{city},
+			</if>
+			<if test="district != null">
+				#{district},
 			</if>
 			<if test="address != null">
 				#{address},

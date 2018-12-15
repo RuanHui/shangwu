@@ -102,6 +102,8 @@
             <label class="col-sm-3 control-label"></label>
             <button id="submit" <%--data-toggle="popover"--%> data-content="添加成功！" class="btn btn-default btn-lg" onclick="doSubmit()">提交</button>
             <div id="submitErrorDiv" style="display: none" class="alert alert-danger">遇到错误，请稍后重试！</div>
+            <button type="button" style="margin-left: 18%" id="btn_query" onclick="doStudentsList()" class="btn btn-primary">查看学生列表</button>
+            <button type="button" id="testPrint" onclick="doTestPrint()" class="btn btn-primary">测试打印</button>
         </div>
     </form>
 </div>

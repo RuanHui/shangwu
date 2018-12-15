@@ -19,7 +19,7 @@
 		}
 	%>
 	<div style="margin:0 auto; width:500px; height:306px;">
-		<input type="image" src="resource/images/500.jpg" style="padding-top: 150px;"/>
+		<input type="image" src="/resource/images/500.jpg" style="padding-top: 150px;"/>
 	</div>
 	<div id="all">
 		<div id="main">

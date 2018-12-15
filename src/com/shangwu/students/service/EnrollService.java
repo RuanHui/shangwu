@@ -55,4 +55,24 @@ public class EnrollService {
         }
         return resultMap;
     }
+
+    /**
+     *@author ruanhui
+     *@date 2018/12/15
+     *@description 测试打印
+     */
+    public void testPring(HttpServletRequest request) {
+        try {
+            StudentInfo studentInfo = new StudentInfo();
+            studentInfo.setName("诺贝尔爱情奖");
+            studentInfo.setParentPhone("15272072107");
+            studentInfo.setCourseName("年卡");
+            studentInfo.setPaymentAmount("3580");
+            studentInfo.setPaymentModeName("支付宝支付");
+            //打印小票
+            PrintUtils.print(request,studentInfo);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
