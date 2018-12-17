@@ -1,6 +1,7 @@
 package com.shangwu.students.mapper;
 
 import com.shangwu.students.domain.StudentInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface StudentsMapper {
     void updateStudent(StudentInfo studentInfo);
 
     void updatePayment(StudentInfo studentInfo);
+
+    void deleteStudent(@Param("id") Integer id);
 }

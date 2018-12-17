@@ -62,4 +62,13 @@ public class StudentsService {
         }
         return resultMap;
     }
+
+    /**
+     *@author ruanhui
+     *@date 2018/12/17
+     *@description 删除功能
+     */
+    public void deleteStudent(HttpServletRequest request, HttpServletResponse response, StudentInfo studentInfo) {
+        mapper.deleteStudent(studentInfo.getId());
+    }
 }

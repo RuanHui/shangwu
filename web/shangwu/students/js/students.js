@@ -3,6 +3,9 @@ var m = new Map();
 //用来装查询姓名
 var tempName;
 
+//用来保存删除的记录ID
+var deleteId;
+
 //默认加载学生信息表
 $(function () {
     //为课程下拉框获取值
@@ -372,4 +375,42 @@ function isPoneAvailable(phone) {
     } else {
         return true;
     }
+}
+
+
+//打开删除模态框
+function openDeleteModal() {
+    //获取选择的行
+    var row = $('#studentsTable').bootstrapTable('getSelections');
+    if (row == null || row[0] == null) {
+        alert("请先选中一条数据删除！");
+        return ;
+    }
+    //填充内容
+    $("#deleteModalContent").html("确定删除 " + row[0].name + " 的信息？");
+    //赋值删除的记录ID
+    deleteId = row[0].id;
+    //打开模态框
+    $('#deleteModal').modal('show');
+}
+
+//删除功能
+function doDelete() {
+    $.ajax({
+        url : '/students/deleteStudent.json',
+        type : 'post',
+        dataType : 'json',
+        data : {
+            id:deleteId
+        },
+        success : function(d) {
+            if (d.success) {
+                //关闭模态框
+                $('#deleteModal').modal('hide');
+                //刷新页面
+                var name = $("#name").val();
+                $("#studentsTable").bootstrapTable("refresh",{query: {name: tempName}})
+            }
+        }
+    });
 }

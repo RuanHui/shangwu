@@ -40,7 +40,7 @@
         <button id="btn_edit" type="button" class="btn btn-default" onclick="openEditModal()">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
         </button>
-        <button id="btn_delete" type="button" class="btn btn-default">
+        <button id="btn_delete" type="button" class="btn btn-default" onclick="openDeleteModal()">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
         </button>
     </div>
@@ -145,6 +145,32 @@
                 </button>
                 <button type="button" onclick="doEdit()" class="btn btn-primary">
                     提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 删除模态框（Modal） -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    删除记录
+                </h4>
+            </div>
+            <div class="modal-body" id="deleteModalContent">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button type="button" onclick="doDelete()" class="btn btn-primary">
+                    确认删除
                 </button>
             </div>
         </div><!-- /.modal-content -->

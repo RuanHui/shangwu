@@ -29,9 +29,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				shangwu_students_info a
 			LEFT JOIN shangwu_course_info b ON a.courseId = b.id
 			LEFT JOIN shangwu_payment_info c ON a.id = c.studentId
-			<if test="name != null and name != ''">
-				where a.name like concat('%',#{name},'%')
-			</if>
+		<choose>
+			<when test="name != null and name != ''">
+				where a.name like concat('%',#{name},'%') and a.status = '1'
+			</when>
+			<otherwise>
+				where a.status = '1'
+			</otherwise>
+		</choose>
 			limit ${offset},${limit}
 	</select>
 
@@ -97,6 +102,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</set>
 		where id = #{id}
+	</update>
+
+	<!--删除学生-->
+	<update id="deleteStudent" parameterType="integer">
+		update shangwu_students_info set status = '0' where id = #{id}
 	</update>
 
 </mapper>

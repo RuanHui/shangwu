@@ -33,8 +33,8 @@ public class EnrollService {
             Integer id = studentInfo.getId();
             //插入缴费表
             mapper.insertPayment(studentInfo);
-            //打印小票
-            PrintUtils.print(request,studentInfo);
+            //打印小票功能移到JS打印，这里注销掉
+//            PrintUtils.print(request,studentInfo);
             resultMap.put("success",true);
         }catch (Exception e) {
             e.printStackTrace();

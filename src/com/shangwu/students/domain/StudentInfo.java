@@ -15,6 +15,7 @@ public class StudentInfo{
     private String city;     //市
     private String district;     //区
     private String address;     //详细住址
+    private String status;     //状态1：正常；0：删除
     private String courseId;     //课程ID
     private String courseName;     //课程名称
     private String paymentMode;     //支付方式
@@ -24,6 +25,15 @@ public class StudentInfo{
     private int offset;
     private int limit;
     private int start;
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getProvince() {
         return province;
@@ -177,13 +187,20 @@ public class StudentInfo{
                 ", sex=" + sex +
                 ", age='" + age + '\'' +
                 ", parentPhone='" + parentPhone + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
                 ", address='" + address + '\'' +
+                ", status='" + status + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", paymentMode='" + paymentMode + '\'' +
                 ", paymentModeName='" + paymentModeName + '\'' +
                 ", paymentAmount='" + paymentAmount + '\'' +
                 ", insertTime='" + insertTime + '\'' +
+                ", offset=" + offset +
+                ", limit=" + limit +
+                ", start=" + start +
                 '}';
     }
 }

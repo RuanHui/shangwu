@@ -168,7 +168,7 @@ function doPrint(name,parentPhone,courseName,paymentAmount,paymentModeName) {
     var nowDate = new Date();
     //初始化打印机
     var LODOP=getLodop();
-    LODOP.PRINT_INIT("测试打印");               //首先一个初始化语句
+    LODOP.PRINT_INIT("打印学生信息");               //首先一个初始化语句
     LODOP.ADD_PRINT_TEXT(0,20,100,20,"尚武道场");//然后多个ADD语句及SET语句
     LODOP.ADD_PRINT_TEXT(25,5,150,20,"--------------------------------");//然后多个ADD语句及SET语句
     LODOP.ADD_PRINT_TEXT(50,5,150,20,"学生姓名：" + name);//然后多个ADD语句及SET语句

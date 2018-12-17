@@ -50,4 +50,24 @@ public class StudentsController {
     public Map updateStudent(HttpServletRequest request, HttpServletResponse response, StudentInfo studentInfo) {
         return service.updateStudent(request,response,studentInfo);
     }
+
+    /**
+     *@author ruanhui
+     *@date 2018/12/15
+     *@description 删除学生信息
+     */
+    @RequestMapping(value = "/deleteStudent.json")
+    @ResponseBody
+    public Map<String, Object> deleteStudent(HttpServletRequest request, HttpServletResponse response, StudentInfo studentInfo) {
+        Map<String,Object> resultMap = new HashMap<>();
+        try {
+            resultMap.put("success",true);
+            service.deleteStudent(request,response,studentInfo);
+        }catch (Exception e) {
+            resultMap.put("success",false);
+            System.out.println("删除学生遇到错误：" + e);
+            e.printStackTrace();
+        }
+        return resultMap;
+    }
 }
