@@ -2,6 +2,7 @@
 var m = new Map();
 
 $(function () {
+
     $('[data-toggle="popover"]').popover();
     //初始化省市区下拉框
     var $distpicker = $('#distpicker');
@@ -18,6 +19,11 @@ function doSubmit() {
     //提交之前校验
     var flag = verify();
     if(flag == true) {
+        var name = $("#name").val();
+        var parentPhone = $("#parentPhone").val();
+        var courseName = $("#courceSelect").find("option:selected").text();
+        var paymentAmount = $("#paymentAmount").val();
+        var paymentModeName = $("#paymentMode").find("option:selected").text();
         //防止重复提交
         $("#submit").prop("disabled","disabled");
         //发送ajax请求
@@ -25,24 +31,26 @@ function doSubmit() {
             url : '/enroll/enroll.json',
             type : 'post',
             data : {
-                name : $("#name").val(),
+                name : name,
                 age : $("#age").val(),
                 sex : $("input[name='sex']:checked").val(),
-                parentPhone : $("#parentPhone").val(),
+                parentPhone : parentPhone,
                 province:$("#province").val(),
                 city:$("#city").val(),
                 district:$("#district").val(),
                 //获取省市区 下拉框的值$("#distpicker option:checked").text()
                 address : $("#address").val(),
                 courseId:$("#courceSelect").val(),
-                courseName:$("#courceSelect").find("option:selected").text(),
+                courseName:courseName,
                 paymentMode:$("#paymentMode").val(),
-                paymentModeName:$("#paymentMode").find("option:selected").text(),
-                paymentAmount:$("#paymentAmount").val()
+                paymentModeName:paymentModeName,
+                paymentAmount:paymentAmount
             },
             dataType : 'json',
             success : function(d) {
                 if (d.success) {
+                    //打印发票
+                    doPrint(name,parentPhone,courseName,paymentAmount,paymentModeName);
                     //恢复按钮
                     $("#submit").removeAttr("disabled");
                     $('#submit').popover("show");
@@ -155,6 +163,26 @@ function resetForm() {
     $("#address").val("");
 }
 
+//打印方法
+function doPrint(name,parentPhone,courseName,paymentAmount,paymentModeName) {
+    var nowDate = new Date();
+    //初始化打印机
+    var LODOP=getLodop();
+    LODOP.PRINT_INIT("测试打印");               //首先一个初始化语句
+    LODOP.ADD_PRINT_TEXT(0,20,100,20,"尚武道场");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(25,5,150,20,"--------------------------------");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(50,5,150,20,"学生姓名：" + name);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(75,5,150,20,"手机号码：" + parentPhone);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(100,5,150,20,"课程名称：" + courseName);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(125,5,150,20,"缴费金额：" + paymentAmount + " RMB");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(150,5,150,20,"支付方式：" + paymentModeName);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(175,5,150,20,"打印时间：" + nowDate.getFullYear() + "-" + nowDate.getMonth() + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds());//然后多个ADD语句及SET语句
+    // ADD_PRINT_TEXT(intTop,intLeft,intWidth,intHeight,strContent)增加纯文本项
+    LODOP.ADD_PRINT_IMAGE(200,20,150,150,"<img border='0' src='../../resource/images/shangwuCode.jpg' width='150' height='150'/>"); //打印二维码
+    // LODOP.SET_PRINT_STYLEA(0,"Stretch",2);//按原图比例(不变形)缩放模式
+    LODOP.PRINT();                               //最后一个打印(或预览、维护、设计)语句
+}
+
 //获取课程下拉框的值
 function getCourseSelect() {
     $.ajax({
@@ -203,12 +231,29 @@ function doStudentsList() {
 
 //测试打印
 function doTestPrint() {
-    $.ajax({
+    var nowDate = new Date();
+    //初始化打印机
+    var LODOP=getLodop();
+    LODOP.PRINT_INIT("测试打印");               //首先一个初始化语句
+    LODOP.ADD_PRINT_TEXT(0,20,100,20,"尚武道场");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(25,5,150,20,"--------------------------------");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(50,5,150,20,"学生姓名：诺贝尔爱情奖");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(75,5,150,20,"手机号码：17607195348");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(100,5,150,20,"课程名称：年卡");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(125,5,150,20,"缴费金额：3580 RMB");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(150,5,150,20,"支付方式：支付宝支付");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(175,5,150,20,"打印时间：" + nowDate.getFullYear() + "-" + nowDate.getMonth() + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds());//然后多个ADD语句及SET语句
+    // ADD_PRINT_TEXT(intTop,intLeft,intWidth,intHeight,strContent)增加纯文本项
+    LODOP.ADD_PRINT_IMAGE(200,20,150,150,"<img border='0' src='../../resource/images/shangwuCode.jpg' width='150' height='150'/>"); //打印二维码
+    LODOP.SET_PRINT_STYLEA(0,"Stretch",2);//按原图比例(不变形)缩放模式
+    LODOP.PREVIEW();    //打印预览
+    // LODOP.PRINT();                               //最后一个打印(或预览、维护、设计)语句
+    /*$.ajax({
         url : '/enroll/testPring.json',
         type : 'post',
         dataType : 'json',
         success : function(d) {
 
         }
-    });
+    });*/
 }

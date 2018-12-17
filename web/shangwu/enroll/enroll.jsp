@@ -17,6 +17,7 @@
     <title>学生缴费窗口</title>
     <%@ include file="/resource/resource.jsp"%>
     <script src="js/enroll.js?v=<%=new Date()%>"></script>
+    <script src="js/LodopFuncs.js?v=<%=new Date()%>"></script>
     <link rel="shortcut icon" href="/resource/images/icon.png" type="image/x-icon"/>
     <link rel="stylesheet" href="css/enroll.css?v=<%=new Date()%>">
 </head>
