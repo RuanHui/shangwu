@@ -169,14 +169,16 @@ function doPrint(name,parentPhone,courseName,paymentAmount,paymentModeName) {
     //初始化打印机
     var LODOP=getLodop();
     LODOP.PRINT_INIT("打印学生信息");               //首先一个初始化语句
-    LODOP.ADD_PRINT_TEXT(0,20,100,20,"尚武道场");//然后多个ADD语句及SET语句
+    LODOP.SET_PRINT_STYLE("FontSize", 25); //字体大小
+    LODOP.ADD_PRINT_TEXT(20,50,150,20,"尚武道场");//然后多个ADD语句及SET语句
+    LODOP.SET_PRINT_STYLE("FontSize", 10); //字体大小
     LODOP.ADD_PRINT_TEXT(25,5,150,20,"--------------------------------");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(50,5,150,20,"学生姓名：" + name);//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(75,5,150,20,"手机号码：" + parentPhone);//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(100,5,150,20,"课程名称：" + courseName);//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(125,5,150,20,"缴费金额：" + paymentAmount + " RMB");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(150,5,150,20,"支付方式：" + paymentModeName);//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(175,5,150,20,"打印时间：" + nowDate.getFullYear() + "-" + nowDate.getMonth() + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds());//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(50,5,250,20,"学生姓名：" + name);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(70,5,180,20,"手机号码：" + parentPhone);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(95,5,180,20,"课程名称：" + courseName);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(120,5,180,20,"缴费金额：" + paymentAmount + " RMB");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(145,5,180,20,"支付方式：" + paymentModeName);//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(220,50,150,150,"打印时间：" + nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds());//然后多个ADD语句及SET语句
     // ADD_PRINT_TEXT(intTop,intLeft,intWidth,intHeight,strContent)增加纯文本项
     LODOP.ADD_PRINT_IMAGE(200,20,150,150,"<img border='0' src='../../resource/images/shangwuCode.jpg' width='150' height='150'/>"); //打印二维码
     // LODOP.SET_PRINT_STYLEA(0,"Stretch",2);//按原图比例(不变形)缩放模式
@@ -235,16 +237,18 @@ function doTestPrint() {
     //初始化打印机
     var LODOP=getLodop();
     LODOP.PRINT_INIT("测试打印");               //首先一个初始化语句
-    LODOP.ADD_PRINT_TEXT(0,20,100,20,"尚武道场");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(25,5,150,20,"--------------------------------");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(50,5,150,20,"学生姓名：诺贝尔爱情奖");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(75,5,150,20,"手机号码：17607195348");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(100,5,150,20,"课程名称：年卡");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(125,5,150,20,"缴费金额：3580 RMB");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(150,5,150,20,"支付方式：支付宝支付");//然后多个ADD语句及SET语句
-    LODOP.ADD_PRINT_TEXT(175,5,150,20,"打印时间：" + nowDate.getFullYear() + "-" + nowDate.getMonth() + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds());//然后多个ADD语句及SET语句
+    LODOP.SET_PRINT_STYLE("FontSize", 25); //字体大小
+    LODOP.ADD_PRINT_TEXT(20,50,150,20,"尚武道场");//然后多个ADD语句及SET语句
+    LODOP.SET_PRINT_STYLE("FontSize", 10); //字体大小
+    LODOP.ADD_PRINT_TEXT(50,5,250,20,"--------------------------------");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(70,5,180,20,"学生姓名：诺贝尔爱情奖");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(95,5,180,20,"手机号码：17607195348");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(120,5,180,20,"课程名称：年卡");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(145,5,180,20,"缴费金额：3580 RMB");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(170,5,180,20,"支付方式：支付宝支付");//然后多个ADD语句及SET语句
+    LODOP.ADD_PRINT_TEXT(195,5,220,20,"打印时间：" + nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds());//然后多个ADD语句及SET语句
     // ADD_PRINT_TEXT(intTop,intLeft,intWidth,intHeight,strContent)增加纯文本项
-    LODOP.ADD_PRINT_IMAGE(200,20,150,150,"<img border='0' src='../../resource/images/shangwuCode.jpg' width='150' height='150'/>"); //打印二维码
+    LODOP.ADD_PRINT_IMAGE(220,50,150,150,"<img border='0' src='../../resource/images/shangwuCode.jpg' width='150' height='150'/>"); //打印二维码
     LODOP.SET_PRINT_STYLEA(0,"Stretch",2);//按原图比例(不变形)缩放模式
     LODOP.PREVIEW();    //打印预览
     // LODOP.PRINT();                               //最后一个打印(或预览、维护、设计)语句

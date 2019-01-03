@@ -5,14 +5,5 @@
   Time: 11:56
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-    <link rel="shortcut icon" href="/resource/images/icon.png" type="image/x-icon"/>
-  </head>
-  <body>
-  $END$
-  <h1>尚武</h1>
-  </body>
-</html>
+<%--转发到门户首页展示--%>
+<jsp:forward page="/shangwu/portals/index.jsp"></jsp:forward>
